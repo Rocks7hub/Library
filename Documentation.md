@@ -29,7 +29,8 @@ local Window = OrionLib:MakeWindow({Name = "Shadow", HidePremium = false, SaveCo
 ```lua
 local Section = Tab:AddSection({
 	Name = "Section"
-})
+}
+)
 
 --[[
 Name = <string> - The name of the section.
