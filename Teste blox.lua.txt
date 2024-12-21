@@ -1,0 +1,411 @@
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/PEDROGGGH5X/Aquii/main/Source")))()
+
+MakeWindow({
+  Hub = {
+    Title = "Rocks hub: Notify Fruit",
+    Animation = "Blox Fruits"
+  },
+  Key = {
+    KeySystem = false,
+    Title = "Key System",
+    Description = "Pegue sua key",
+    KeyLink = "https://discord.com/invite/K5cMcdJX",
+    Keys = {"1234"},
+    Notifi = {
+      Notifications = true,
+      CorrectKey = "Running the Script...",
+      Incorrectkey = "The key is incorrect",
+      CopyKeyLink = "Copied to Clipboard"
+    }
+  }
+})
+
+MinimizeButton({
+  Image = "rbxassetid://15837192551",
+  Size = {40, 40},
+  Color = Color3.fromRGB(10, 10, 10),
+  Corner = true,
+  Stroke = false,
+  StrokeColor = Color3.fromRGB(255, 0, 0)
+})
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+local JobId1 = game.JobId
+local JobId2 = game.JobId
+local JobId3 = game.JobId
+local JobId4 = game.JobId
+local JobId = game.JobId
+local JobId6 = game.JobId -- Adicionei JobId6 para evitar nil
+
+local scriptValue1 = 'game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "' .. JobId1 .. '")'
+local scriptValue2 = 'game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "' .. JobId2 .. '")'
+local scriptValue3 = 'game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "' .. JobId3 .. '")'
+local scriptValue = 'game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "' .. JobId .. '")'
+local scriptValue6 = 'game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", "' .. JobId6 .. '")'
+
+local playerCount = #Players:GetPlayers()
+
+local function formatarHora(dataHora)
+    local agora = os.time()
+    local diferenca = os.difftime(agora, dataHora)
+    local dataFormatada
+
+    if diferenca < 86400 then
+        dataFormatada = "Hoje às " .. os.date("%H:%M", dataHora)
+    elseif diferenca < 172800 then
+        dataFormatada = "Ontem às " .. os.date("%H:%M", dataHora)
+    else
+        dataFormatada = os.date("%d/%m/%Y às %H:%M", dataHora)
+    end
+
+    return dataFormatada
+end
+
+-- URLs webhook 
+local urlWebhooQN = "https://discord.com/api/webhooks/1319491108388077609/MwxldpgyFwYeo4XlRYqa6x4qc8912CIFplS0RdP0IirTecjDpZlW_E8tadZhwLGxcxBi"
+local urlWebhooEL = "https://discord.com/api/webhooks/1319491108388077609/MwxldpgyFwYeo4XlRYqa6x4qc8912CIFplS0RdP0IirTecjDpZlW_E8tadZhwLGxcxBi"
+local urlWebhooFT = "https://discord.com/api/webhooks/1315689062430150707/gYQ-wsSweTZVhpPl2NLK8s7yZYg6HSviQwx25OjsNy98Oqq1zG2up_8pddnVShi46MuO"
+local urlWebhooKT = "https://discord.com/api/webhooks/1319802526438129696/o3hkboJ65NHqCuOewuq8zqKpMkdshRcT61FaUweJ-tsZgcf7Z0H-HHags2W9IQ2D56Wp"
+local urlWebhookk = "https://discord.com/api/webhooks/1319818856369225812/Gl5h6hCWD6pv8gymn4MRoGOpf48is-CNYzNOJSR6mg-CA_SaRzVTi1PJmX8iMYK8o6UY"
+
+
+local function enviarNotificacaoWebhoo(data, url)
+    local newdata = HttpService:JSONEncode(data)
+    local headers = { ["Content-Type"] = "application/json" }
+    local request = http_request or request or HttpPost or syn.request
+    local response = { Url = url, Body = newdata, Method = "POST", Headers = headers }
+    request(response)
+end
+
+local function notificarCakeQueen()
+    if cakeQueenNotificado then return end
+
+    local username = "Shadow Notify"
+    local Text2 = "```Cake Queen [Lv. 2175] [Boss]```"
+    local dataFormatada1 = formatarHora(os.time())
+
+    local data = {
+        ["username"] = username,
+        ["avatar_url"] = "https://i.pinimg.com/736x/41/35/a2/4135a2835f33f2ac4150321247e6eeaa.jpg",
+        ["embeds"] = {
+            {
+                ["title"] = "Cake Queen | Spawn",
+                ["color"] = 0x00FF00,
+                ["footer"] = {
+                    ["text"] = "https://discord.gg/qcyu3tCC ┃" .. dataFormatada1,
+                },
+                ["fields"] = {
+                    {
+                        ["name"] = "Cake Queen:",
+                        ["value"] = Text2,
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Player Count 12 Max;",
+                        ["value"] = tostring(playerCount),
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Job-ID:",
+                        ["value"] = JobId1 or "Indefinido", -- Verificação para evitar nil
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Script Bypass:",
+                        ["value"] = scriptValue1,
+                        ["inline"] = false
+                    }
+                }
+            }
+        }
+    }
+
+    enviarNotificacaoWebhoo(data, urlWebhooQN)
+    cakeQueenNotificado = true
+end
+
+local function verificarCakeQueen()
+    local cakeQueen = game.Workspace._WorldOrigin.EnemySpawns:FindFirstChild("Cake Queen [Lv. 2175] [Boss]")
+    if cakeQueen then
+        notificarCakeQueen()
+    end
+end
+
+verificarCakeQueen()
+game.Workspace._WorldOrigin.EnemySpawns.ChildAdded:Connect(function(child)
+    if child.Name == "Cake Queen [Lv. 2175] [Boss]" then
+        notificarCakeQueen()
+    end
+end)
+
+local captainElephantNotificado = false
+
+local function notificarCaptainElephant()
+    if captainElephantNotificado then return end
+
+    local username = "Shadow Notify"
+    local Text3 = "```Captain Elephant [Lv. 1875] [Boss]```"
+    local dataFormatada2 = formatarHora(os.time())
+
+    local data = {
+        ["username"] = username,
+        ["avatar_url"] = "https://i.pinimg.com/736x/41/35/a2/4135a2835f33f2ac4150321247e6eeaa.jpg",
+        ["embeds"] = {
+            {
+                ["title"] = "Captain Elephant | Spawn",
+                ["color"] = 0x00FF00,
+                ["footer"] = {
+                    ["text"] = "https://discord.gg/qcyu3tCC ┃" .. dataFormatada2,
+                },
+                ["fields"] = {
+                    {
+                        ["name"] = "Captain Elephant:",
+                        ["value"] = Text3,
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Player Count 12 Max;",
+                        ["value"] = tostring(playerCount),
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Job-ID:",
+                        ["value"] = JobId2 or "Indefinido", -- Verificação para evitar nil
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Script Bypass:",
+                        ["value"] = scriptValue2,
+                        ["inline"] = false
+                    }
+                }
+            }
+        }
+    }
+
+    enviarNotificacaoWebhoo(data, urlWebhooEL)
+    captainElephantNotificado = true
+end
+
+local function verificarCaptainElephant()
+    local captainElephant = game.Workspace._WorldOrigin.EnemySpawns:FindFirstChild("Captain Elephant [Lv. 1875] [Boss]")
+    if captainElephant then
+        notificarCaptainElephant()
+    end
+end
+
+verificarCaptainElephant()
+game.Workspace._WorldOrigin.EnemySpawns.ChildAdded:Connect(function(child)
+    if child.Name == "Captain Elephant [Lv. 1875] [Boss ]" then
+        notificarCaptainElephant()
+    end
+end)
+
+local frutasNotificadas = {}
+
+local function notificarFrutaSpawnada(nomeDaFruta)
+    if frutasNotificadas[nomeDaFruta] and frutasNotificadas[nomeDaFruta] == JobId3 then
+        return
+    end
+
+    local Text4 = "```" .. nomeDaFruta .. " Spawned!```"
+    local dataFormatada3 = formatarHora(os.time())
+
+    local data = {
+        ["username"] = "Shadow Notify",
+        ["avatar_url"] = "https://i.pinimg.com/736x/41/35/a2/4135a2835f33f2ac4150321247e6eeaa.jpg",
+        ["embeds"] = {
+            {
+                ["title"] = "Fruits Mystic | Spawn",
+                ["color"] = 65280,
+                ["footer"] = {
+                    ["text"] = "https://discord.gg/qcyu3tCC ┃" .. dataFormatada3,
+                },
+                ["fields"] = {
+                    {
+                        ["name"] = "Name Fruit Spawned:",
+                        ["value"] = Text4,
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Player Count 12 Max:",
+                        ["value"] = tostring(playerCount),
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Job-ID:",
+                        ["value"] = JobId3 or "Indefinido", -- Verificação para evitar nil
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Script Bypass:",
+                        ["value"] = scriptValue3,
+                        ["inline"] = false
+                    }
+                }
+            }
+        }
+    }
+
+    enviarNotificacaoWebhoo(data, urlWebhooFT)
+    frutasNotificadas[nomeDaFruta] = JobId3
+end
+
+local function detectarFruta(part)
+    if part:IsA("Tool") or string.find(part.Name, "Fruit") then
+        notificarFrutaSpawnada(part.Name)
+    end
+end
+
+local function verificarFrutasNoChao()
+    for _, part in ipairs(workspace:GetChildren()) do
+        if part:IsA("Tool") or string.find(part.Name, "Fruit") then
+            notificarFrutaSpawnada(part.Name)
+        end
+    end
+end
+
+verificarFrutasNoChao()
+workspace.ChildAdded:Connect(detectarFruta)
+workspace.ChildRemoved:Connect(detectarFruta)
+workspace.ChildMoved:Connect(detectarFruta)
+
+local kitsuneNotificado = false
+
+local function notificarKitsune()
+    if kitsuneNotificado then return end
+
+    local username = "Shadow Notify"
+    local Text5 = "🔵/🦊"
+    local dataFormatada4 = formatarHora(os.time())
+
+    local data = {
+        ["username"] = username,
+        ["avatar_url"] = "https://i.pinimg.com/736x/41/35/a2/4135a2835f33f2ac4150321247e6eeaa.jpg",
+        ["embeds"] = {
+            {
+                ["title"] = "Kitsune Island | Spawn",
+                ["color"] = 0x00FF00,
+                ["footer"] = {
+                    ["text"] = " " .. dataFormatada4 .. " | https://discord.gg/Shadow",
+                },
+                ["fields"] = {
+                    {
+                        ["name"] = "Mystic Kitsune:",
+                        ["value"] = Text5,
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Player Count:Max12",
+                        ["value"] = tostring(playerCount),
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Job Count:",
+                        ["value"] = JobId or "Indefinido", -- Verificação para evitar nil
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Script Bypass:",
+                        ["value"] = scriptValue or "Indefinido", -- Verificação para evitar nil
+                        ["inline"] = false
+                    }
+                }
+            }
+        }
+    }
+
+    enviarNotificacaoWebhoo(data, urlWebhooKT)
+    kitsuneNotificado = true
+end
+
+local function verificarKitsune()
+    local kitsuneIsland = game.Workspace._WorldOrigin.Locations:FindFirstChild("Kitsune Island")
+    if kitsuneIsland then
+        notificarKitsune()
+    end
+end
+
+verificarKitsune()
+game.Workspace._WorldOrigin.Locations.ChildAdded:Connect(function(child)
+    if child.Name == "Kitsune Island" then
+        verificarKitsune()
+    end
+end)
+
+game.Workspace._WorldOrigin.Locations.ChildRemoved:Connect(function(child)
+    if child.Name == "Kitsune Island" then
+        kitsuneNotificado = false
+    end
+end)
+
+local prehistoricIslandNotificado = false
+
+local function notificarPrehistoricIsland()
+    if prehistoricIslandNotificado then
+        return -- já notificou sobre a Prehistoric Island
+    end
+
+    local username = "Shadow Notify"
+    local Text6 = "🐲"
+    local dataFormatada6 = formatarHora(os.time())
+
+    local data = {
+        ["username"] = username,
+        ["avatar_url"] = "https://i.pinimg.com/736x/41/35/a2/4135a2835f33f2ac4150321247e6eeaa.jpg",
+        ["embeds"] = {
+            {
+                ["title"] = "Prehistoric Island  | Spawn",
+                ["color"] = 0x00FF00,
+                ["footer"] = {
+                    ["text"] = " " .. dataFormatada6 .. " | https://discord.gg/Shadow",
+                },
+                ["fields"] = {
+                    {
+                        ["name"] = "Mystic Prehistoric:",
+                        ["value"] = Text6,
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Player Count:Max12",
+                        ["value"] = tostring(playerCount),
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Job-Id:",
+                        ["value"] = JobId6 or "Indefinido", -- Verificação para evitar nil
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "Script Bypass:",
+                        ["value"] = scriptValue6,
+                        ["inline"] = false
+                    }
+                }
+            }
+        }
+    }
+    
+    enviarNotificacaoWebhoo(data, urlWebhookk)
+    prehistoricIslandNotificado = true
+end
+
+local function verificarPrehistoricIsland()
+    local prehistoricIsland = game.Workspace._WorldOrigin.Locations:FindFirstChild("Prehistoric Island")
+    if prehistoricIsland then
+        notificarPrehistoricIsland()
+    end
+end
+
+-- Verifica a presença da Prehistoric Island ao iniciar
+verificarPrehistoricIsland()
+
+-- Conecta a função para detectar a adição de novos filhos em Locations
+game.Workspace._WorldOrigin.Locations.ChildAdded:Connect(function(child)
+    if child.Name == "Prehistoric Island" then
+        notificarPrehistoricIsland()
+    end
+end)
