@@ -1,4 +1,4 @@
-# Orion Library
+# Orion Library - Shadow
 This documentation is for the stable release of Orion Library.
 
 ## Booting the Library
@@ -10,7 +10,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 
 ## Creating a Window
 ```lua
-local Window = OrionLib:MakeWindow({Name = "Shadow", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Shadow", HidePremium = false, SaveConfig = true, ConfigFolder = "ShadowLib"})
 ```
 
 
@@ -18,7 +18,7 @@ local Window = OrionLib:MakeWindow({Name = "Shadow", HidePremium = false, SaveCo
 ## Creating a Tab
 ```lua
             local Tab = Window:MakeTab({
-              	Name = "XXXXXXX",
+              	Name = "Shadow",
               	Icon = "rbxassetid://",
               	PremiumOnly = false
               }
@@ -27,25 +27,21 @@ local Window = OrionLib:MakeWindow({Name = "Shadow", HidePremium = false, SaveCo
 ```
 ## Creating a Section
 ```lua
-local Section = Tab:AddSection({
-	Name = "Section"
-}
-)
-
---[[
-Name = <string> - The name of the section.
-]]
+            local Section = Tab:AddSection({
+            	Name = "Section"
+            }
+          )
 ```
 You can add elements to sections the same way you would add them to a tab normally.
 
 ## Notifying the user
 ```lua
-OrionLib:MakeNotification({
-	Name = "Title!",
-	Content = "Notification content... what will it say??",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
+              OrionLib:MakeNotification({
+              	Name = "Shadow",
+              	Content = "Cristo É O Senho!",
+              	Image = "rbxassetid://4483345998",
+              	Time = 5
+              })
 ```
 
 
@@ -53,7 +49,7 @@ OrionLib:MakeNotification({
 ## Creating a Button
 ```lua
       Tab:AddButton({
-        	Name = "Button!",
+        	Name = "Shadow",
         	Callback = function()
               		
           	end    
@@ -65,7 +61,7 @@ OrionLib:MakeNotification({
 ## Creating a Checkbox toggle
 ```lua
               Tab:AddToggle({
-                	Name = "toggle",
+                	Name = "Shadow",
                 	Default = false,
                 	Callback = function(Value)
                 		
@@ -81,52 +77,16 @@ CoolToggle:Set(true)
 
 
 
-## Creating a Color Picker
-```lua
-Tab:AddColorpicker({
-	Name = "Colorpicker",
-	Default = Color3.fromRGB(255, 0, 0),
-	Callback = function(Value)
-		print(Value)
-	end	  
-})
-
---[[
-Name = <string> - The name of the colorpicker.
-Default = <color3> - The default value of the colorpicker.
-Callback = <function> - The function of the colorpicker.
-]]
-```
-
 ### Setting the color picker's value
 ```lua
 ColorPicker:Set(Color3.fromRGB(255,255,255))
 ```
 
 
-## Creating a Slider
-```lua
-      Tab:AddSlider({
-        	Name = "Slider",
-        	Min = 0,
-        	Max = 20,
-        	Default = 5,
-        	Color = Color3.fromRGB(255,255,255),
-        	Increment = 1,
-        	ValueName = "bananas",
-        	Callback = function(Value)
-        		
-      end    
-    }
-  )
-```
-
 ### Change Slider Value
 ```lua
 Slider:Set(2)
 ```
-Make sure you make your slider a variable (local CoolSlider = Tab:AddSlider...) for this to work.
-
 
 ## Creating a Label
 ```lua
@@ -153,7 +113,7 @@ CoolParagraph:Set("Paragraph New!", "New Paragraph Content!")
 ## Creating an Adaptive Input
 ```lua
             Tab:AddTextbox({
-              	Name = "Textbox",
+              	Name = "Shadow",
               	Default = "default box input",
               	TextDisappear = true,
               	Callback = function(Value)
@@ -168,7 +128,7 @@ CoolParagraph:Set("Paragraph New!", "New Paragraph Content!")
 ## Creating a Dropdown menu
 ```lua
           Tab:AddDropdown({
-            	Name = "Dropdown",
+            	Name = "Shadow",
             	Default = "",
             	Options = {""},
             	Callback = function(Value)
